@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" version="1.0">
+  <service-assembly>
+    <identification>
+      <name>EAI-CAMEL-ROUTER-SA</name>
+      <description>EAI-CAMEL-ROUTER-SA</description>
+    </identification>
+    <service-unit>
+      <identification>
+        <name>EAI-CAMEL-ROUTER-SU</name>
+        <description>EAI-CAMEL-ROUTER-SU</description>
+      </identification>
+      <target>
+        <artifacts-zip>EAI-CAMEL-ROUTER-SU-0.0.1.zip</artifacts-zip>
+        <component-name>servicemix-camel</component-name>
+      </target>
+    </service-unit>
+  </service-assembly>
+</jbi>

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Private-Package: !*
+Built-By: SAO
+Build-Jdk: 1.6.0_23
+Bundle-Version: 0.0.1
+Tool: Bnd-0.0.311
+Bundle-Name: EAI-JMS-ALGORITHMS
+Bnd-LastModified: 1296724349156
+Created-By: Apache Maven Bundle Plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: pwr.tin.tip.sw.pd.eai.EAI-JMS-ALGORITHMS
+Import-Package: org.apache.activemq,org.apache.servicemix.common.osgi;
+ version="2010.1",org.apache.servicemix.jms;version="2010.1",org.apach
+ e.servicemix.jms.endpoints;version="2010.1"
+
