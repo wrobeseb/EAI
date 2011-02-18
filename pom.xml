@@ -6,6 +6,7 @@
   <artifactId>EAI</artifactId>
   <version>0.0.1</version>
 
+
   <packaging>pom</packaging>
   <name>EAI</name>
   <url>http://pwr.tin.tip.sw.pd.eai</url>
