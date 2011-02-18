@@ -8,7 +8,7 @@
 
   <packaging>pom</packaging>
   <name>EAI</name>
-  <url>http://maven.apache.org</url>
+  <url>http://pwr.tin.tip.sw.pd.eai</url>
   
   <dependencyManagement>
   	<dependencies>
