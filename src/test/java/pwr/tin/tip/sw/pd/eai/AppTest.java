@@ -7,7 +7,6 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
