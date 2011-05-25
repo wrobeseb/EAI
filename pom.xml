@@ -79,5 +79,7 @@
   	</dependency>
   </dependencies>
   <modules>
+  	<module>/servicemix/EAI-CAMEL-ROUTER</module>
+  	<module>/servicemix/EAI-JMS</module>
   </modules>
 </project>

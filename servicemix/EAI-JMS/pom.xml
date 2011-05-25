@@ -2,44 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pwr.tin.tip.sw.pd.eai</groupId>
-  <artifactId>EAI-CAMEL-ROUTER</artifactId>
+  <artifactId>EAI-JMS</artifactId>
   <packaging>bundle</packaging>
-  <name>EAI-CAMEL-ROUTER</name>
+  <name>EAI-JMS</name>
   <version>0.0.1</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.apache.servicemix</groupId>
+  		<artifactId>servicemix-jms</artifactId>
+  		<version>2010.01</version>
+  	</dependency>
+  </dependencies>
   <url>http://pwr.tin.tip.sw.pd.eai</url>
-   <dependencies>
-  	<dependency>
-  		<groupId>dom4j</groupId>
-  		<artifactId>dom4j</artifactId>
-  		<version>1.6.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>jaxen</groupId>
-  		<artifactId>jaxen</artifactId>
-  		<version>1.1.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>commons-dbcp</groupId>
-  		<artifactId>commons-dbcp</artifactId>
-  		<version>1.4</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-jdbc</artifactId>
-  		<version>3.0.5.RELEASE</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.apache.camel</groupId>
-  		<artifactId>camel-core</artifactId>
-  		<version>2.6.0</version>
-  		<type>bundle</type>
-  		<scope>provided</scope>
-  	</dependency>
-   </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -50,8 +24,10 @@
         <configuration>
           <instructions>
             <Import-Package>
+               org.apache.activemq,
+               org.apache.servicemix.jms,
+               org.apache.servicemix.jms.endpoints,
                org.apache.servicemix.common.osgi,
-               org.springframework.jdbc.datasource,
                *
             </Import-Package>
           </instructions>
