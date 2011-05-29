@@ -3,12 +3,10 @@ package pwr.tin.tip.sw.pd.eai;
 import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
 import org.apache.camel.RecipientList;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pwr.tin.tip.sw.pd.eai.enums.UnitType;
 import pwr.tin.tip.sw.pd.eai.service.IRouterService;
 
 @Component(value="router")
@@ -22,51 +20,23 @@ public class Router {
 	@Consume(uri=JBI_PREFIX + "/WF-CU-DSLRouter/EAI")
 	@RecipientList
 	public String euRoute(Exchange exchange){
-		/*String body = (String) exchange.getIn().getBody();
-		String algorithmName = getString(body, "/algorithm/algorithmName");
-		String algorithmEndpoint = getString(body, "/algorithm/algorithmEndpoint");
-		if (algorithmEndpoint != null) {*/
-			routerService.getLoadInfo();
-			return JBI_PREFIX + "/CU-WF-RequestService/EAI";
-		/*}
-		else {
-			if (algorithmName != null) {
-				return JBI_PREFIX + "/euInService/EAI";
-			}
-		}
-		return null;*/
+		exchange.getIn().setHeader("cuId", loadBalancer(UnitType.CU));
+		return JBI_PREFIX + "/CU-WF-RequestService/EAI";
 	}
 	
 	@Consume(uri=JBI_PREFIX + "/CU-EU-DSLRouter/EAI")
 	@RecipientList
 	public String cuRoute(Exchange exchange){
-		/*String body = (String) exchange.getIn().getBody();
-		String algorithmName = getString(body, "/algorithm/algorithmName");
-		String algorithmEndpoint = getString(body, "/algorithm/algorithmEndpoint");
-		if (algorithmEndpoint != null) {*/
-			routerService.getLoadInfo();
-			return JBI_PREFIX + "/EU-CU-RequestService/EAI";
-		/*}
-		else {
-			if (algorithmName != null) {
-				return JBI_PREFIX + "/euInService/EAI";
-			}
-		}
-		return null;*/
+		exchange.getIn().setHeader("euId", loadBalancer(UnitType.EU));
+		return JBI_PREFIX + "/EU-CU-RequestService/EAI";
 	}
 	
-	private String getString(String messageBody, String xpathExpression) {
-		try {
-			Node node = DocumentHelper.parseText(messageBody).selectSingleNode(xpathExpression);
-			if (node != null) {
-				return node.getStringValue();	
-			}
-			else {
-				return null;
-			}
-		}
-		catch (DocumentException e) {
-			e.printStackTrace();
+	private Integer loadBalancer(UnitType unit) {
+		switch (unit) {
+			case CU:
+				return routerService.getLessLoadedCentralUnitId();
+			case EU:
+				return routerService.getLessLoadedExecutiveUnitId();
 		}
 		return null;
 	}

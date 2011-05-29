@@ -1,23 +1,26 @@
 Manifest-Version: 1.0
-Export-Package: pwr.tin.tip.sw.pd.eai.service,pwr.tin.tip.sw.pd.eai;us
- es:="pwr.tin.tip.sw.pd.eai.service,org.dom4j,org.apache.camel,org.spr
- ingframework.beans.factory.annotation,org.springframework.stereotype"
- ,pwr.tin.tip.sw.pd.eai.dao
+Export-Package: pwr.tin.tip.sw.pd.eai.service,pwr.tin.tip.sw.pd.eai.mo
+ del;uses:="pwr.tin.tip.sw.pd.eai.enums,org.springframework.jdbc.core"
+ ,pwr.tin.tip.sw.pd.eai;uses:="pwr.tin.tip.sw.pd.eai.enums,pwr.tin.tip
+ .sw.pd.eai.service,org.apache.camel,org.springframework.beans.factory
+ .annotation,org.springframework.stereotype",pwr.tin.tip.sw.pd.eai.enu
+ ms,pwr.tin.tip.sw.pd.eai.dao
 Private-Package: pwr.tin.tip.sw.pd.eai.service.impl,pwr.tin.tip.sw.pd.
  eai.dao.impl
-Built-By: wrobeseb
+Built-By: sao
 Tool: Bnd-0.0.311
 Bundle-Name: EAI-CAMEL-ROUTER
 Created-By: Apache Maven Bundle Plugin
 Bundle-Version: 0.0.1
-Build-Jdk: 1.6.0_21
-Bnd-LastModified: 1306326511725
+Build-Jdk: 1.6.0_24
+Bnd-LastModified: 1306623949736
 Bundle-ManifestVersion: 2
 Import-Package: javax.sql,org.apache.camel;version="2.6",org.apache.co
- mmons.dbcp;version="1.4",org.apache.servicemix.common.osgi,org.dom4j,
- org.springframework.beans.factory.annotation;version="3.0",org.spring
- framework.jdbc.core;version="3.0",org.springframework.jdbc.datasource
- ;version="3.0",org.springframework.stereotype;version="3.0",pwr.tin.t
- ip.sw.pd.eai,pwr.tin.tip.sw.pd.eai.dao,pwr.tin.tip.sw.pd.eai.service
+ mmons.dbcp;version="1.4",org.apache.servicemix.common.osgi,org.spring
+ framework.beans.factory.annotation;version="3.0",org.springframework.
+ jdbc.core;version="3.0",org.springframework.jdbc.datasource;version="
+ 3.0",org.springframework.stereotype;version="3.0",pwr.tin.tip.sw.pd.e
+ ai,pwr.tin.tip.sw.pd.eai.dao,pwr.tin.tip.sw.pd.eai.enums,pwr.tin.tip.
+ sw.pd.eai.model,pwr.tin.tip.sw.pd.eai.service
 Bundle-SymbolicName: pwr.tin.tip.sw.pd.eai.EAI-CAMEL-ROUTER
 
