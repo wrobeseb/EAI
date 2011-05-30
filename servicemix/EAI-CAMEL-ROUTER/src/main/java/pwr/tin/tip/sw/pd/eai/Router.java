@@ -1,8 +1,5 @@
 package pwr.tin.tip.sw.pd.eai;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
 import org.apache.camel.RecipientList;
@@ -14,7 +11,7 @@ import pwr.tin.tip.sw.pd.eai.service.IRouterService;
 
 @Component(value="router")
 public class Router {
-
+	
 	public final static String JBI_PREFIX = "jbi:endpoint:http://pwr.tin.tip.sw.pd.eai";
 	
 	@Autowired(required=true)
@@ -22,20 +19,19 @@ public class Router {
 	
 	@Consume(uri=JBI_PREFIX + "/WF-CU-DSLRouter/EAI")
 	@RecipientList
-	public String euRoute(Exchange exchange){
+	public String euRoute(Exchange exchange) throws Exception{
 		exchange.getIn().setHeader("cuId", loadBalancer(UnitType.CU));
 		return JBI_PREFIX + "/CU-WF-RequestService/EAI";
 	}
 	
 	@Consume(uri=JBI_PREFIX + "/CU-EU-DSLRouter/EAI")
 	@RecipientList
-	public String cuRoute(Exchange exchange){
+	public String cuRoute(Exchange exchange) throws Exception{
 		exchange.getIn().setHeader("euId", loadBalancer(UnitType.EU));
 		return JBI_PREFIX + "/EU-CU-RequestService/EAI";
 	}
 	
-	private Integer loadBalancer(UnitType unit) {
-		
+	private Integer loadBalancer(UnitType unit) throws Exception {
 		switch (unit) {
 			case CU:
 				return routerService.getLessLoadedCentralUnitId();

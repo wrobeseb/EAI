@@ -17,35 +17,43 @@ public class RouterServiceImpl implements IRouterService {
 	private IRouterDao routerDao;
 
 	@Override
-	public Integer getLessLoadedCentralUnitId() {
-		List<Unit> centralUnitList = routerDao.getCentralUnitList();
-		if (centralUnitList.size() != 0) {
-			for (Unit unit : centralUnitList) {
-				if (!unit.getOverloadFlg()) {
-					routerDao.markUnit(unit.getIdUnit(), UnitType.CU.ordinal());
-					return unit.getIdUnit();
-				}
-			}
-			return centralUnitList.get(0).getIdUnit();
-		}
-		else {
-			return 0;
-		}
+	public Integer getLessLoadedCentralUnitId() throws Exception {
+		return getLessLoadedUnit(routerDao.getCentralUnitList(), UnitType.CU).getIdUnit();
 	}
 
 	@Override
-	public Integer getLessLoadedExecutiveUnitId() {
-		List<Unit> executiveUnitList = routerDao.getExecutiveUnitList();
-		if (executiveUnitList.size() != 0) {
-			for (Unit unit : executiveUnitList) {
-				if (!unit.getOverloadFlg()) {
-					return unit.getIdUnit();
+	public Integer getLessLoadedExecutiveUnitId() throws Exception {
+		return getLessLoadedUnit(routerDao.getExecutiveUnitList(), UnitType.EU).getIdUnit();
+	}
+	
+	private Unit getLessLoadedUnit(List<Unit> unitList, UnitType unitType) throws Exception {
+		Unit selectedUnit = null;
+		if (unitList.size() != 0) {
+			if (!isAllMarked(unitList, unitType)) {
+				for (Unit unit : unitList) {
+					if (!unit.getOverloadFlg() && !unit.isMark()) {
+						selectedUnit = unit; break;
+					}
 				}
 			}
-			return executiveUnitList.get(0).getIdUnit();
+			if (selectedUnit == null) {
+				selectedUnit = unitList.get(0);
+			}
 		}
 		else {
-			return 0;
+			throw new Exception("Brak zarejstrowanych jednostek w bazie danych");
 		}
+		routerDao.markUnit(selectedUnit.getIdUnit(), unitType);
+		return selectedUnit;
+	}
+	
+	private Boolean isAllMarked(List<Unit> unitList, UnitType unitType) {
+		for (Unit unit : unitList) {
+			if (!unit.isMark()) {
+				return false;
+			}
+		}
+		routerDao.clearMarkers(unitType);
+		return true;
 	}
 }

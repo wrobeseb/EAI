@@ -24,8 +24,8 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	  	<property name="driverClassName" value="org.postgresql.Driver"/> 
-	  	<property name="url" value="jdbc:postgresql://winw.corp.tepenet:5432/pd"/>
-	   	<!-- <property name="url" value="jdbc:postgresql:pd"/> -->
+	  	<!--<property name="url" value="jdbc:postgresql://winw.corp.tepenet:5432/pd"/> -->
+	   	 <property name="url" value="jdbc:postgresql:pd"/>
 	   	<property name="username" value="smx"/>
 	   	<property name="password" value="smx_passwd"/>
 	   	<property name="defaultReadOnly" value="false"/>

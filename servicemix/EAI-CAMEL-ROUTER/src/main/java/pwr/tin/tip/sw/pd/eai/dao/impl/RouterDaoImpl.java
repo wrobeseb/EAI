@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import pwr.tin.tip.sw.pd.eai.dao.IRouterDao;
+import pwr.tin.tip.sw.pd.eai.enums.UnitType;
 import pwr.tin.tip.sw.pd.eai.model.Unit;
 import pwr.tin.tip.sw.pd.eai.model.UnitRowMapper;
 
@@ -32,20 +33,17 @@ public class RouterDaoImpl implements IRouterDao {
 	}
 
 	@Override
-	public void markUnit(Integer id, Integer type) {
-		template.update("UPDATE unit SET mark = 1 WHERE id_unit = ? AND type = ?", id, type);
+	public void markUnit(Integer id, UnitType unit) {
+		template.update("UPDATE unit SET marked = true WHERE id_unit = ? AND type = ?", id, unit.ordinal());
 	}
 
 	@Override
-	public void clearMarks() {
-		template.update("UPDATE unit SET mark = 0");
+	public void clearMarkers(UnitType unit) {
+		template.update("UPDATE unit SET marked = false WHERE type = ?", unit.ordinal());
 	}
 
 	@Override
-	public Boolean isMarked(Integer id, Integer type) {
-		List<Unit> list = template.query("SELECT * FROM unit WHERE id_unit = ? AND type = ?", new UnitRowMapper());
-		if (list.size() != 0) {
-			return list.get(0).;
-		}
+	public List<Unit> marked(Integer id, UnitType unit) {
+		return template.query("SELECT * FROM unit WHERE id_unit = ? AND type = ?", new UnitRowMapper(), id, unit.ordinal());
 	}
 }

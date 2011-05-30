@@ -11,7 +11,7 @@ public class Unit {
 	private String addressIp;
 	private Date lastUpdateDt;
 	private Integer maxProcessNo;
-	private Integer mark;
+	private boolean mark;
 	
 	public Integer getIdUnit() {
 		return idUnit;
@@ -49,11 +49,10 @@ public class Unit {
 	public void setMaxProcessNo(Integer maxProcessNo) {
 		this.maxProcessNo = maxProcessNo;
 	}
-	public Integer getMark() {
+	public boolean isMark() {
 		return mark;
 	}
-	public void setMark(Integer mark) {
+	public void setMark(boolean mark) {
 		this.mark = mark;
 	}
-	
 }

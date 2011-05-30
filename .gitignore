@@ -1,6 +1,3 @@
 /target
-/servicemix/EAI-CAMEL-ROUTER/EAI-CAMEL-ROUTER-SA/target
-/servicemix/EAI-CAMEL-ROUTER/EAI-CAMEL-ROUTER-SU/target
-/servicemix/EAI-CAMEL-ROUTER-OSGI/target
-/servicemix/EAI-JMS-EU/target
-/servicemix/EAI-JMS-CU/target
+/servicemix/EAI-CAMEL-ROUTER/target
+/servicemix/EAI-JMS/target
