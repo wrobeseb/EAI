@@ -30,4 +30,22 @@ public class RouterDaoImpl implements IRouterDao {
 	public List<Unit> getExecutiveUnitList() {
 		return template.query("SELECT * FROM unit WHERE type = 1", new UnitRowMapper());
 	}
+
+	@Override
+	public void markUnit(Integer id, Integer type) {
+		template.update("UPDATE unit SET mark = 1 WHERE id_unit = ? AND type = ?", id, type);
+	}
+
+	@Override
+	public void clearMarks() {
+		template.update("UPDATE unit SET mark = 0");
+	}
+
+	@Override
+	public Boolean isMarked(Integer id, Integer type) {
+		List<Unit> list = template.query("SELECT * FROM unit WHERE id_unit = ? AND type = ?", new UnitRowMapper());
+		if (list.size() != 0) {
+			return list.get(0).;
+		}
+	}
 }

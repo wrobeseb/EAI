@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import pwr.tin.tip.sw.pd.eai.dao.IRouterDao;
+import pwr.tin.tip.sw.pd.eai.enums.UnitType;
 import pwr.tin.tip.sw.pd.eai.model.Unit;
 import pwr.tin.tip.sw.pd.eai.service.IRouterService;
 
@@ -21,6 +22,7 @@ public class RouterServiceImpl implements IRouterService {
 		if (centralUnitList.size() != 0) {
 			for (Unit unit : centralUnitList) {
 				if (!unit.getOverloadFlg()) {
+					routerDao.markUnit(unit.getIdUnit(), UnitType.CU.ordinal());
 					return unit.getIdUnit();
 				}
 			}

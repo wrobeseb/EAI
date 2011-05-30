@@ -1,5 +1,8 @@
 package pwr.tin.tip.sw.pd.eai;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.camel.Consume;
 import org.apache.camel.Exchange;
 import org.apache.camel.RecipientList;
@@ -32,6 +35,7 @@ public class Router {
 	}
 	
 	private Integer loadBalancer(UnitType unit) {
+		
 		switch (unit) {
 			case CU:
 				return routerService.getLessLoadedCentralUnitId();

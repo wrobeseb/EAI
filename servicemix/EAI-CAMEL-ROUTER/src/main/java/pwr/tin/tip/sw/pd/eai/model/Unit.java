@@ -11,9 +11,7 @@ public class Unit {
 	private String addressIp;
 	private Date lastUpdateDt;
 	private Integer maxProcessNo;
-	private String serviceName;
-	private String inQueueName;
-	private String outQueueName;
+	private Integer mark;
 	
 	public Integer getIdUnit() {
 		return idUnit;
@@ -51,22 +49,11 @@ public class Unit {
 	public void setMaxProcessNo(Integer maxProcessNo) {
 		this.maxProcessNo = maxProcessNo;
 	}
-	public String getServiceName() {
-		return serviceName;
+	public Integer getMark() {
+		return mark;
 	}
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public void setMark(Integer mark) {
+		this.mark = mark;
 	}
-	public String getInQueueName() {
-		return inQueueName;
-	}
-	public void setInQueueName(String inQueueName) {
-		this.inQueueName = inQueueName;
-	}
-	public String getOutQueueName() {
-		return outQueueName;
-	}
-	public void setOutQueueName(String outQueueName) {
-		this.outQueueName = outQueueName;
-	}
+	
 }

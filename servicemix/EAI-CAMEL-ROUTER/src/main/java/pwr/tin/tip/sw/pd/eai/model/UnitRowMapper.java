@@ -18,9 +18,6 @@ public class UnitRowMapper implements RowMapper<Unit> {
 		unit.setAddressIp(rs.getString("address_ip"));
 		unit.setLastUpdateDt(rs.getDate("last_update_dt"));
 		unit.setMaxProcessNo(rs.getInt("max_process_no"));
-		unit.setServiceName(rs.getString("service_name"));
-		unit.setInQueueName(rs.getString("in_queue_name"));
-		unit.setOutQueueName(rs.getString("out_queue_name"));
 		return unit;
 	}
 

@@ -45,7 +45,7 @@
 		<jms:consumer service="eai:EU-CU-ResponseService"
 	                  endpoint="EAI"
 	                  targetService="eai:CU-EU-ResponseService"
-	                  destinationName="queue/CU-EU/response"
+	                  destinationName="queue/EU-CU/response"
 	                  connectionFactory="#connectionFactory" 
 	                  marshaler="#marshaler">
         </jms:consumer>
