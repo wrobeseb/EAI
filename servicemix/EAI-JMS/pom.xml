@@ -25,6 +25,7 @@
           <instructions>
             <Import-Package>
                org.apache.activemq,
+               org.apache.activemq.pool,
                org.apache.servicemix.jms,
                org.apache.servicemix.jms.endpoints,
                org.apache.servicemix.common.osgi,

@@ -62,6 +62,8 @@
 					endpoint="EAI"
 					targetService="eai:WF-CU-DSLRouter"
 					destinationName="queue/WF-CU/request"
+					concurrentConsumers="20"
+					cacheLevel="1"
 					connectionFactory="#connectionFactory" 
 					marshaler="#marshaler">
 		</jms:consumer>
@@ -75,8 +77,14 @@
 		<bean id="marshaler" class="org.apache.servicemix.jms.endpoints.DefaultConsumerMarshaler">
 		   <property name="mep" value="http://www.w3.org/2004/08/wsdl/in-only" />
 		</bean>
-		<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-		    <property name="brokerURL" value="tcp://localhost:61616" />
+		<bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+			<property name="connectionFactory">
+				<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				    <property name="brokerURL" value="tcp://localhost:61616" />
+				</bean>
+			</property>
+			<property name="maxConnections" value="100" />
+		    <property name="maximumActive" value="100" />
 		</bean>
 		<bean class="org.apache.servicemix.common.osgi.EndpointExporter" />
 </beans>
